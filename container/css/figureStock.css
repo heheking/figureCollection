@@ -1,0 +1,60 @@
+* {
+    margin: 0px;
+    -webkit-user-select: none;
+}
+
+body {
+    padding: 12px 20px 0px 20px;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+#title {
+    border-bottom: 2px solid black;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.figureTypeList:hover {
+    font-weight: bolder;
+    cursor: pointer;
+    font-size: 26px;
+}
+.figureTypeList:active {
+    color: rgb(53, 153, 254);
+}
+
+.figureTitle {
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.figureBox {
+    cursor: pointer;
+    border: 2px solid rgb(0, 175, 255); 
+    padding: 4px;
+    margin: 0px auto;
+    width: 188px;
+    height: 224px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    /* box-shadow: 0 0 15px 0 hsla(203, 6%, 45%, 0.1);
+    border-radius: 8px; */
+}
+/* .layui-layer-content {
+    background: rgb(248, 248, 248);
+}
+.layui-layer-btn- {
+    background: rgb(248, 248, 248);
+    overflow: inherit;
+} */

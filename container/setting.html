@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手办管理器 | 设置</title>
+    <script src="../module/vue.js"></script>
+    <script src="../module/layui/layui.js"></script>
+    <link rel="stylesheet" href="../module/layui/css/layui.css">
+    <link rel="stylesheet" href="../module/jquery-3.5.1.min.js">
+    <style>
+        .setting-item {
+            margin-bottom: 8px;
+        }
+        .setting-item span {
+            position: relative;
+            top: -2px;
+        }
+        .setting-item input {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding: 20px;" id="app">
+        <div class="setting-item">
+            <label>保存路径：</label>
+            <input disabled value="功能未实装"></input>
+            <span class="layui-btn layui-btn-xs">默认路径</span>
+        </div>
+        
+        <div class="setting-item">
+            <label>列表模式的 size：</label>
+            <input v-model.number="config.listSize"></input>
+        </div>
+
+        <div id="control-tab" style="margin-bottom: 8px;">
+            <span class="layui-btn layui-btn-sm" @click="saveSetting">保存</span>
+        </div>
+            
+        <div>
+            手办管理器 v 1.0
+            <br>
+            鲸某人/heheking
+        </div>
+    </div>
+</body>
+<script src="../render/setting.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data: {
+            config: {
+                pageSize: null,
+                listSize: null
+            }
+        },
+        mounted() {
+            let root = this;
+            ipcRenderer.on("setting-reply", function (event, arg) {
+                let json = $.parseJSON(arg);
+                console.log("已收到数据")
+                root.config = json;
+            });
+
+            ipcRenderer.send("setting-message", "get");
+        },
+        methods: {
+            saveSetting() {
+                ipcRenderer.send("save-setting", this.config);
+            }
+        }
+    });
+</script>
+</html>
